@@ -14,12 +14,30 @@ pipeline {
                 sh 'python3  Webhook/main.py'
             }
         }
-        stage('build') {
+        stage('Unit tests') {
             steps {
-                
-                echo 'build in progress 2'
-                sh 'python3  Webhook/main.py'
+                sh 'echo Running unit tests'
             }
+        }
+        stage('deploy') {
+            steps {
+                sh 'echo Deploying build2'
+            }
+        }
+        stage('Regression tests') {
+            steps {
+                sh 'echo Running E2E tests2'
+            }
+        }
+        stage('Release to prod') {
+            steps {
+                sh 'echo Releasing to prod'
+            }
+        }
+    }
+ post {
+        always {
+            echo 'Cleanup after everything!'
         }
     }
 }
